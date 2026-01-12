@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 import jakarta.persistence.*;
 
@@ -11,6 +11,13 @@ public class Producto {
     private String nombre;
     @Column(nullable = false)
     private Double precio;
+
+    public Producto() {}
+
+    public Producto(String nombre, Double precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -31,5 +38,10 @@ public class Producto {
     }
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + "]";
     }
 }
