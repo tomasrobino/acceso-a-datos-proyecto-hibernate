@@ -8,7 +8,6 @@
     <persistence-unit name="orm-clase">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.example.Producto</class>
-        <class>org.example.Tarea</class>
 
 
         <properties>
