@@ -2,9 +2,11 @@ package org.example.model;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table(name = "perfiles")
 public class Perfil {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String bio;

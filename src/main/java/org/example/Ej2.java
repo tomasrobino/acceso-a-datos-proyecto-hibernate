@@ -31,7 +31,7 @@ public class Ej2 {
         try {
             tx.begin();
 
-            Usuario u = new Usuario("Ana");
+            Usuario u = new Usuario("Ana", new Perfil("Bio de Ana", "600123123"));
             Perfil p = new Perfil("Bio de Ana", "600123123");
 
             /*

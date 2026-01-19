@@ -2,24 +2,31 @@ package org.example.model;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String nombre;
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private Perfil perfil;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "perfil_id")
+    private Perfil perfilUnidireccional;
 
     public Usuario() {}
 
-    public Usuario(String nombre, Perfil perfil) {
+    public Usuario(String nombre, Perfil perfil, Perfil perfilUnidireccional) {
         this.nombre = nombre;
         this.perfil = perfil;
+        this.perfilUnidireccional = perfilUnidireccional;
     }
 
-    public Usuario(String nombre) {
+    public Usuario(String nombre, Perfil perfilUnidireccional) {
         this.nombre = nombre;
+        this.perfilUnidireccional = perfilUnidireccional;
     }
 
     public void setId(Long id) {
