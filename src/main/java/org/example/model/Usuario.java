@@ -10,8 +10,10 @@ public class Usuario {
     private Long id;
     @Column(nullable = false)
     private String nombre;
+    // Relacion bidireccional con perfil
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private Perfil perfil;
+    // Relacion unidireccional con perfil, con Usuario como dueño
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "perfil_id")
     private Perfil perfilUnidireccional;
