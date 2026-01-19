@@ -33,12 +33,14 @@ public class Ej2 {
 
             Usuario u = new Usuario("Ana", new Perfil("Bio de Ana", "600123123"));
             Perfil p = new Perfil("Bio de Ana", "600123123");
+            Perfil pUni = new Perfil("Bio de Ana", "600123123");
 
             /*
              * TODO 1:
              *  - Asocia el perfil al usuario (lado dueño)
              *    u.setPerfil(p);
              */
+            u.setPerfilUnidireccional(pUni);
             u.setPerfil(p);
 
             /*
@@ -145,6 +147,7 @@ public class Ej2 {
              *    u.getPerfil();
              *  - Pero para “provocarla”, NO llames a getPerfil aquí.
              */
+            u.getPerfil();
 
         } finally {
             em.close();

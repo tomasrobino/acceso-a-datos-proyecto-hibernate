@@ -14,7 +14,7 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private Perfil perfil;
     // Relacion unidireccional con perfil, con Usuario como dueño
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "perfil_id")
     private Perfil perfilUnidireccional;
 
@@ -52,6 +52,13 @@ public class Usuario {
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    public Perfil getPerfilUnidireccional() {
+        return perfilUnidireccional;
+    }
+    public void setPerfilUnidireccional(Perfil perfilUnidireccional) {
+        this.perfilUnidireccional = perfilUnidireccional;
     }
 
     @Override
