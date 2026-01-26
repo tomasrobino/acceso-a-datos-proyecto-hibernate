@@ -8,6 +8,8 @@
     <persistence-unit name="persistencia">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.example.ej1y2.model.Producto</class>
+        <class>org.example.ej3.model.Editorial</class>
+        <class>org.example.ej3.model.Libro</class>
 
 
         <properties>

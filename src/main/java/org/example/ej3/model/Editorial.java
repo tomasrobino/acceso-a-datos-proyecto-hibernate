@@ -14,7 +14,7 @@ public class Editorial {
     String nombre;
     @Column
     String pais;
-    @OneToMany(mappedBy = "editorial")
+    @OneToMany(mappedBy = "editorial", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Libro> libros;
 
     public Editorial() {}
