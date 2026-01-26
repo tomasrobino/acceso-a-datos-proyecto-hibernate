@@ -2,7 +2,7 @@ package org.example.ej3.service;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import org.example.JPAUtil;
+import org.example.ej3.JPAUtil;
 import org.example.ej3.model.Libro;
 import org.example.ej3.repository.RepositoryLibro;
 
