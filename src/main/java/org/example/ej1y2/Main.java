@@ -1,9 +1,9 @@
-package org.example;
+package org.example.ej1y2;
 
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import org.example.model.Producto;
+import org.example.ej1y2.model.Producto;
 
 /**
  * Ejercicio 1 – Ciclo de vida de una entidad

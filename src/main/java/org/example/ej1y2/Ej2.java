@@ -1,10 +1,10 @@
-package org.example;
+package org.example.ej1y2;
 
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import org.example.model.Perfil;
-import org.example.model.Usuario;
+import org.example.ej1y2.model.Perfil;
+import org.example.ej1y2.model.Usuario;
 
 public class Ej2 {
     public static void main(String[] args) {

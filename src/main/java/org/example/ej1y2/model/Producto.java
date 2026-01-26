@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.ej1y2.model;
 
 import jakarta.persistence.*;
 
