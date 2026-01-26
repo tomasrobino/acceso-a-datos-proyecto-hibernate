@@ -30,7 +30,9 @@ public class ServiceLibro implements BaseService<Libro, Long>{
     public Libro merge(Libro entity) {
         RepositoryLibro repository = new RepositoryLibro();
         EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         Libro libro = repository.merge(em, entity);
+        tx.commit();
         em.close();
         return libro;
     }
@@ -39,7 +41,9 @@ public class ServiceLibro implements BaseService<Libro, Long>{
     public void remove(Libro entity) {
         RepositoryLibro repository = new RepositoryLibro();
         EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         repository.remove(em, entity);
+        tx.commit();
         em.close();
     }
 }

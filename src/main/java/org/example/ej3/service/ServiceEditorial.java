@@ -30,7 +30,9 @@ public class ServiceEditorial implements BaseService<Editorial, Long> {
     public Editorial merge(Editorial entity) {
         RepositoryEditorial repository = new RepositoryEditorial();
         EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         Editorial editorial = repository.merge(em, entity);
+        tx.commit();
         em.close();
         return editorial;
     }
@@ -39,7 +41,9 @@ public class ServiceEditorial implements BaseService<Editorial, Long> {
     public void remove(Editorial entity) {
         RepositoryEditorial repository = new RepositoryEditorial();
         EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         repository.remove(em, entity);
+        tx.commit();
         em.close();
     }
 }
