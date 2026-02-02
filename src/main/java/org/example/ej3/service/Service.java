@@ -3,8 +3,10 @@ package org.example.ej3.service;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import org.example.ej3.JPAUtil;
+import org.example.ej3.model.Autor;
 import org.example.ej3.model.Editorial;
 import org.example.ej3.model.Libro;
+import org.example.ej3.repository.RepositoryAutor;
 import org.example.ej3.repository.RepositoryEditorial;
 import org.example.ej3.repository.RepositoryLibro;
 
@@ -54,5 +56,51 @@ public class Service {
         EntityManager em = JPAUtil.getEntityManager();
         RepositoryLibro repositoryLibro = new RepositoryLibro();
         return repositoryLibro.findById(em, idLibro);
+    }
+
+    public void addAutorALibro(Long autorId, Long libroId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        RepositoryLibro repositoryLibro = new RepositoryLibro();
+        RepositoryAutor repositoryAutor = new RepositoryAutor();
+        Libro libro = repositoryLibro.findById(em, libroId);
+        List<Autor> autores = libro.getAutores();
+        autores.add(repositoryAutor.findById(em, autorId));
+        libro.setAutores(autores);
+        repositoryLibro.merge(em, libro);
+
+        tx.commit();
+        em.close();
+    }
+
+    public void addLibroConAutores(Long editorialId, Libro libro, List<Long> autoresIds) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        RepositoryEditorial repositoryEditorial = new RepositoryEditorial();
+        Editorial editorial = repositoryEditorial.findById(em, editorialId);
+        libro.setEditorial(editorial);
+        RepositoryLibro repositoryLibro = new RepositoryLibro();
+        repositoryLibro.persist(em, libro);
+        tx.commit();
+        em.close();
+        autoresIds.forEach(autorId -> addAutorALibro(autorId, libro.getId()));
+    }
+
+    public void listarAutoresLibro(Long libroId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        RepositoryLibro repositoryLibro = new RepositoryLibro();
+        Libro libro = repositoryLibro.findById(em, libroId);
+        System.out.println(libro.getAutores());
+        em.close();
+    }
+
+    public void listarLibrosAutor(Long autorId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        RepositoryAutor repositoryAutor = new RepositoryAutor();
+        Autor autor = repositoryAutor.findById(em, autorId);
+        System.out.println(autor.getLibros());
+        em.close();
     }
 }
