@@ -2,6 +2,8 @@ package org.example.ej3.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "libros")
 public class Libro {
@@ -16,6 +18,8 @@ public class Libro {
     private double precio;
     @ManyToOne
     private Editorial editorial;
+    @ManyToMany(mappedBy = "libros")
+    private List<Autor> autores;
 
     public Libro() {}
 
